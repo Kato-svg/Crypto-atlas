@@ -1,8 +1,10 @@
+import { AppLayout } from "../../../shared/ui/app-layout";
+
 function CoinsPage() {
   return (
-    <div>
-      <h1>Crypto Atlas Market</h1>
-    </div>
+    <AppLayout>
+      <h1>Coins page</h1>
+    </AppLayout>
   );
 }
 

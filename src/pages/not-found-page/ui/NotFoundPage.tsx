@@ -1,8 +1,10 @@
+import { AppLayout } from "../../../shared/ui/app-layout";
+
 function NotFoundPage() {
   return (
-    <div>
+    <AppLayout>
       <h1>Page not found</h1>
-    </div>
+    </AppLayout>
   );
 }
 

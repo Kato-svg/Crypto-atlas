@@ -1,6 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  background-color: rgb(18, 27, 32);
-  color: azure;
+  background-color: #0f1117;
+  color: #c7d7ec;
+  font-family: Inter, Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
 }
