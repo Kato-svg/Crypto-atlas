@@ -1,0 +1,121 @@
+.panel {
+  padding: 24px;
+  background: #202632;
+  border: 1px solid #2e3545;
+  border-radius: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.searchPlaceholder {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid #343b4d;
+  border-radius: 12px;
+  background: #171c26;
+  color: #7f8798;
+  font-size: 14px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filterButton {
+  padding: 10px;
+  border: 1px solid #343b4d;
+  border-radius: 10px;
+  background: #293041;
+  color: #c4b5fd;
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  background: #343b4d;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  margin: 0;
+}
+
+.coinButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: 100%;
+  padding: 14px;
+
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: #252b38;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.coinButton:hover {
+  border-color: #6d5dfc;
+  background: #2b3242;
+}
+
+.coinName {
+  margin: 0;
+  font-weight: 600;
+}
+
+.coinSymbol {
+  margin: 4px 0 0;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.coinInfo {
+  text-align: right;
+}
+
+.price {
+  margin: 0;
+  font-weight: 600;
+}
+
+.change {
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.positive {
+  color: #8bd17c;
+}
+
+.negative {
+  color: #f87171;
+}

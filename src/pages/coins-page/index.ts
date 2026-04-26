@@ -1,1 +1,1 @@
-export { default as CoinsPage } from "./ui/CoinsPage";
+export { default as CoinsPage } from "./CoinsPage";

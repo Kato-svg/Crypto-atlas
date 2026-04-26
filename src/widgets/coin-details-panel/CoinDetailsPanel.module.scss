@@ -1,0 +1,112 @@
+.panel {
+  padding: 24px;
+  background: #202632;
+  border: 1px solid #2e3545;
+  border-radius: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.label {
+  margin: 0 0 4px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.priceBlock {
+  text-align: right;
+}
+
+.price {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.change {
+  margin: 4px 0 0;
+  color: #8bd17c;
+  font-size: 14px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  padding: 16px;
+  border-radius: 14px;
+  background: #252b38;
+}
+
+.statLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.chartPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 360px;
+  margin-bottom: 20px;
+
+  border: 1px dashed #4b5563;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #252b38 0%, #1b202b 100%);
+  color: #9ca3af;
+}
+
+.periods {
+  display: flex;
+  gap: 8px;
+}
+
+.periodButton {
+  padding: 10px 14px;
+  border: 1px solid #343b4d;
+  border-radius: 10px;
+  background: #293041;
+  color: #c4b5fd;
+  cursor: pointer;
+}
+
+.periodButton:hover {
+  background: #343b4d;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .priceBlock {
+    text-align: left;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .chartPlaceholder {
+    min-height: 240px;
+  }
+}
