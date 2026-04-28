@@ -1,45 +1,13 @@
+import { Link } from "react-router-dom";
+import type { Coin } from "../../entities/coin/model";
 import styles from "./CoinsList.module.scss";
 
-const mockCoins = [
-  {
-    name: "Bitcoin",
-    symbol: "BTC",
-    price: "$42,300.12",
-    change: 3.23,
-  },
-  {
-    name: "Ethereum",
-    symbol: "ETH",
-    price: "$3,009.38",
-    change: 2.18,
-  },
-  {
-    name: "Tether",
-    symbol: "USDT",
-    price: "$1.00",
-    change: -0.01,
-  },
-  {
-    name: "BNB",
-    symbol: "BNB",
-    price: "$417.62",
-    change: 1.95,
-  },
-  {
-    name: "Solana",
-    symbol: "SOL",
-    price: "$98.44",
-    change: 4.82,
-  },
-  {
-    name: "XRP",
-    symbol: "XRP",
-    price: "$0.81",
-    change: -0.79,
-  },
-];
+type CoinsListProps = {
+  coins: Coin[];
+  activeCoinId: string | null;
+};
 
-export function CoinsList() {
+export function CoinsList({ coins, activeCoinId }: CoinsListProps) {
   return (
     <section className={styles.panel}>
       <div className={styles.header}>
@@ -64,9 +32,14 @@ export function CoinsList() {
       </div>
 
       <ul className={styles.list}>
-        {mockCoins.map((coin) => (
-          <li className={styles.item} key={coin.symbol}>
-            <button className={styles.coinButton} type="button">
+        {coins.map((coin) => (
+          <li className={styles.item} key={coin.id}>
+            <Link
+              className={`${styles.coinButton} ${
+                activeCoinId === coin.id ? styles.active : ""
+              }`}
+              to={`/coin/${coin.id}`}
+            >
               <div>
                 <p className={styles.coinName}>{coin.name}</p>
                 <p className={styles.coinSymbol}>{coin.symbol}</p>
@@ -76,14 +49,14 @@ export function CoinsList() {
                 <p className={styles.price}>{coin.price}</p>
                 <p
                   className={`${styles.change} ${
-                    coin.change >= 0 ? styles.positive : styles.negative
+                    coin.change24h >= 0 ? styles.positive : styles.negative
                   }`}
                 >
-                  {coin.change >= 0 ? "+" : ""}
-                  {coin.change}%
+                  {coin.change24h >= 0 ? "+" : ""}
+                  {coin.change24h}%
                 </p>
               </div>
-            </button>
+            </Link>
           </li>
         ))}
       </ul>

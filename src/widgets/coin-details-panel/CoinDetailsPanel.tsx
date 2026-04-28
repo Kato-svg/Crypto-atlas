@@ -1,34 +1,50 @@
 import styles from "./CoinDetailsPanel.module.scss";
+import type { Coin } from "../../entities/coin/model";
 
-export function CoinDetailsPanel() {
+type CoinDetailsPanelProps = {
+  coin: Coin | undefined;
+};
+
+export function CoinDetailsPanel({ coin }: CoinDetailsPanelProps) {
+  if (!coin) {
+    return (
+      <section className={styles.panel}>
+        <div className={styles.emptyState}>Coin not found</div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.panel}>
       <div className={styles.header}>
         <div>
           <p className={styles.label}>Selected coin</p>
-          <h2 className={styles.title}>Bitcoin BTC</h2>
+          <h2 className={styles.title}>{coin.name}</h2>
         </div>
 
         <div className={styles.priceBlock}>
-          <p className={styles.price}>$42,300.12</p>
-          <p className={styles.change}>+3.23% 24h</p>
+          <p className={styles.price}>${coin.price}</p>
+          <p className={styles.change}>
+            {coin.change24h >= 0 ? "+" : ""}
+            {coin.change24h}%
+          </p>
         </div>
       </div>
 
       <div className={styles.stats}>
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Market cap</span>
-          <strong>$830B</strong>
+          <strong>${coin.marketCap}</strong>
         </div>
 
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Volume</span>
-          <strong>$24.8B</strong>
+          <strong>${coin.volume}</strong>
         </div>
 
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Rank</span>
-          <strong>#1</strong>
+          <strong>{coin.rank}</strong>
         </div>
       </div>
 
