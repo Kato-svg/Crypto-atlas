@@ -1,5 +1,5 @@
 import styles from "./CoinDetailsPanel.module.scss";
-import type { Coin } from "../../entities/coin/model";
+import type { Coin } from "../../entities/coin";
 
 type CoinDetailsPanelProps = {
   coin: Coin | undefined;

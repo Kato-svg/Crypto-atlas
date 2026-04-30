@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { CoinDetailsPanel, CoinsList, MarketLayout } from "../../widgets";
-import { mockCoins } from "../../entities/coin/model";
+import { mockCoins } from "../../entities/coin";
 
 function CoinsPage() {
   const { id } = useParams();

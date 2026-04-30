@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Coin } from "../../entities/coin/model";
+import type { Coin } from "../../entities/coin";
 import styles from "./CoinsList.module.scss";
 
 type CoinsListProps = {
