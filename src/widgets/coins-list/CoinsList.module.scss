@@ -56,8 +56,11 @@
   flex-direction: column;
   gap: 8px;
 
+  max-height: 720px;
   margin: 0;
   padding: 0;
+  overflow-y: auto;
+
   list-style: none;
 }
 
@@ -79,12 +82,18 @@
   background: #252b38;
   color: inherit;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 
 .coinButton:hover {
   border-color: #6d5dfc;
   background: #2b3242;
+}
+
+.active {
+  border-color: #8b5cf6;
+  background: #32384a;
 }
 
 .coinName {
@@ -118,9 +127,4 @@
 
 .negative {
   color: #f87171;
-}
-
-.active {
-  border-color: #8b5cf6;
-  background: #32384a;
 }

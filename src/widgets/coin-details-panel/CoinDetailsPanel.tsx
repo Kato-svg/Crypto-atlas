@@ -1,11 +1,18 @@
-import styles from "./CoinDetailsPanel.module.scss";
 import type { Coin } from "../../entities/coin";
+import {
+  formatCompactCurrency,
+  formatCurrency,
+  formatPercent,
+} from "../../shared/lib/formatters";
+import type { Currency } from "../../shared/types/currency";
+import styles from "./CoinDetailsPanel.module.scss";
 
 type CoinDetailsPanelProps = {
   coin: Coin | undefined;
+  currency: Currency;
 };
 
-export function CoinDetailsPanel({ coin }: CoinDetailsPanelProps) {
+export function CoinDetailsPanel({ coin, currency }: CoinDetailsPanelProps) {
   if (!coin) {
     return (
       <section className={styles.panel}>
@@ -14,19 +21,26 @@ export function CoinDetailsPanel({ coin }: CoinDetailsPanelProps) {
     );
   }
 
+  const isPositiveChange = coin.change24h >= 0;
+
   return (
     <section className={styles.panel}>
       <div className={styles.header}>
         <div>
           <p className={styles.label}>Selected coin</p>
-          <h2 className={styles.title}>{coin.name}</h2>
+          <h2 className={styles.title}>
+            {coin.name} {coin.symbol}
+          </h2>
         </div>
 
         <div className={styles.priceBlock}>
-          <p className={styles.price}>${coin.price}</p>
-          <p className={styles.change}>
-            {coin.change24h >= 0 ? "+" : ""}
-            {coin.change24h}%
+          <p className={styles.price}>{formatCurrency(coin.price, currency)}</p>
+          <p
+            className={`${styles.change} ${
+              isPositiveChange ? styles.positive : styles.negative
+            }`}
+          >
+            {formatPercent(coin.change24h)} 24h
           </p>
         </div>
       </div>
@@ -34,17 +48,17 @@ export function CoinDetailsPanel({ coin }: CoinDetailsPanelProps) {
       <div className={styles.stats}>
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Market cap</span>
-          <strong>${coin.marketCap}</strong>
+          <strong>{formatCompactCurrency(coin.marketCap, currency)}</strong>
         </div>
 
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Volume</span>
-          <strong>${coin.volume}</strong>
+          <strong>{formatCompactCurrency(coin.volume, currency)}</strong>
         </div>
 
         <div className={styles.statCard}>
           <span className={styles.statLabel}>Rank</span>
-          <strong>{coin.rank}</strong>
+          <strong>#{coin.rank}</strong>
         </div>
       </div>
 

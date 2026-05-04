@@ -1,0 +1,32 @@
+.error {
+  padding: 32px;
+  border: 1px solid #4b2630;
+  border-radius: 20px;
+  background: #241a22;
+  color: #f5f7fa;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.message {
+  margin: 8px 0 0;
+  color: #fca5a5;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 14px;
+
+  border: 1px solid #7f1d1d;
+  border-radius: 10px;
+  background: #3f1d24;
+  color: #fecaca;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #51212a;
+}

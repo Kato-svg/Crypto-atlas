@@ -1,9 +1,8 @@
 import { apiClient } from "../../../shared/api/client";
-import type { Coin } from "../model/types";
-import { mapCoinMarketApiResponseToCoin } from "../model/mappers";
-import type { CoinMarketApiResponse } from "../model/types";
+import type { Currency } from "../../../shared/types/currency";
 
-type Currency = "usd" | "eur";
+import { mapCoinMarketApiResponseToCoin } from "../model/mappers";
+import type { Coin, CoinMarketApiResponse } from "../model/types";
 
 export async function getCoinsMarkets(
   currency: Currency,
@@ -21,5 +20,6 @@ export async function getCoinsMarkets(
   const coins = await apiClient<CoinMarketApiResponse[]>(
     `/coins/markets?${searchParams.toString()}`,
   );
+
   return coins.map(mapCoinMarketApiResponseToCoin);
 }

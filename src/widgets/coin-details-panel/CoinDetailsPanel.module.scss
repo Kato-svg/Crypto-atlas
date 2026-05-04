@@ -37,8 +37,15 @@
 
 .change {
   margin: 4px 0 0;
-  color: #8bd17c;
   font-size: 14px;
+}
+
+.positive {
+  color: #8bd17c;
+}
+
+.negative {
+  color: #f87171;
 }
 
 .stats {
@@ -91,6 +98,17 @@
 
 .periodButton:hover {
   background: #343b4d;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 240px;
+
+  color: #9ca3af;
+  font-size: 18px;
 }
 
 @media (max-width: 768px) {
