@@ -1,3 +1,5 @@
+import { CurrencySwitcher } from "../../features/currency-switcher";
+
 import styles from "./Header.module.scss";
 
 export function Header() {
@@ -9,8 +11,7 @@ export function Header() {
       </div>
 
       <div className={styles.actions}>
-        <span className={styles.currency}>USD</span>
-        <span className={styles.currency}>EUR</span>
+        <CurrencySwitcher />
       </div>
     </header>
   );

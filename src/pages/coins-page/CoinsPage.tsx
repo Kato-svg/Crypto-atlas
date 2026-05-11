@@ -2,6 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import { getCoinsMarkets } from "../../entities/coin";
+import {
+  filterCoins,
+  useDebouncedValue,
+} from "../../features/search-coins";
 
 import { EmptyState } from "../../shared/ui/empty-state";
 import { ErrorMessage } from "../../shared/ui/error-message";
@@ -13,7 +17,9 @@ const COINS_LIMIT = 50;
 
 function CoinsPage() {
   const { id } = useParams<{ id: string }>();
-  const { currency } = useMarketParams();
+  const { currency, search, setSearch } = useMarketParams();
+
+  const debouncedSearch = useDebouncedValue(search, 300);
 
   const coinsQuery = useQuery({
     queryKey: ["coins", currency, COINS_LIMIT],
@@ -66,19 +72,21 @@ function CoinsPage() {
     );
   }
 
-  const defaultCoin = coins[0];
+  const visibleCoins = filterCoins(coins, debouncedSearch);
 
+  const defaultCoin = visibleCoins[0] ?? coins[0];
   const selectedCoin = id ? coins.find((coin) => coin.id === id) : defaultCoin;
-
   const activeCoinId = selectedCoin?.id ?? null;
 
   return (
     <MarketLayout
       left={
         <CoinsList
-          coins={coins}
+          coins={visibleCoins}
           activeCoinId={activeCoinId}
           currency={currency}
+          search={search}
+          onSearchChange={setSearch}
         />
       }
       right={

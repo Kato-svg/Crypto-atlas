@@ -1,0 +1,36 @@
+.switcher {
+  display: flex;
+  gap: 4px;
+}
+
+.button {
+  padding: 8px 14px;
+
+  background: #2a3040;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: #323a50;
+    color: #e2e8f0;
+  }
+}
+
+.active {
+  background: #3b2d6e;
+  border-color: #6d28d9;
+  color: #c4b5fd;
+
+  &:hover {
+    background: #3b2d6e;
+    color: #c4b5fd;
+  }
+}
