@@ -7,17 +7,17 @@ import { EmptyState } from "../../shared/ui/empty-state";
 import { ErrorMessage } from "../../shared/ui/error-message";
 import { Loader } from "../../shared/ui/loader";
 import { CoinDetailsPanel, CoinsList, MarketLayout } from "../../widgets";
-import type { Currency } from "../../shared/types/currency";
+import { useMarketParams } from "./model/useMarketParams";
 
-const DEFAULT_CURRENCY: Currency = "usd";
 const COINS_LIMIT = 50;
 
 function CoinsPage() {
   const { id } = useParams<{ id: string }>();
+  const { currency } = useMarketParams();
 
   const coinsQuery = useQuery({
-    queryKey: ["coins", DEFAULT_CURRENCY, COINS_LIMIT],
-    queryFn: () => getCoinsMarkets(DEFAULT_CURRENCY, COINS_LIMIT),
+    queryKey: ["coins", currency, COINS_LIMIT],
+    queryFn: () => getCoinsMarkets(currency, COINS_LIMIT),
   });
 
   if (coinsQuery.isPending) {
@@ -78,11 +78,11 @@ function CoinsPage() {
         <CoinsList
           coins={coins}
           activeCoinId={activeCoinId}
-          currency={DEFAULT_CURRENCY}
+          currency={currency}
         />
       }
       right={
-        <CoinDetailsPanel coin={selectedCoin} currency={DEFAULT_CURRENCY} />
+        <CoinDetailsPanel coin={selectedCoin} currency={currency} />
       }
     />
   );

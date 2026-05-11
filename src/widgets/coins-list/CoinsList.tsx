@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import type { Coin } from "../../entities/coin";
 import { formatCurrency, formatPercent } from "../../shared/lib/formatters";
-import type { Currency } from "../../shared/types";
+
 import styles from "./CoinsList.module.scss";
+import type { Currency } from "../../shared/types/currency";
 
 type CoinsListProps = {
   coins: Coin[];
@@ -12,6 +13,8 @@ type CoinsListProps = {
 };
 
 export function CoinsList({ coins, activeCoinId, currency }: CoinsListProps) {
+  const [searchParams] = useSearchParams();
+
   return (
     <section className={styles.panel}>
       <div className={styles.header}>
@@ -45,7 +48,7 @@ export function CoinsList({ coins, activeCoinId, currency }: CoinsListProps) {
                 className={`${styles.coinButton} ${
                   isActive ? styles.active : ""
                 }`}
-                to={`/coin/${coin.id}`}
+                to={{ pathname: `/coin/${coin.id}`, search: searchParams.toString() }}
                 aria-current={isActive ? "page" : undefined}
               >
                 <div>
