@@ -21,34 +21,12 @@
   font-size: 14px;
 }
 
-.searchPlaceholder {
-  margin-bottom: 16px;
-  padding: 12px 14px;
-  border: 1px solid #343b4d;
-  border-radius: 12px;
-  background: #171c26;
-  color: #7f8798;
-  font-size: 14px;
-}
-
-.filters {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.controls {
+  display: flex;
   gap: 8px;
+  align-items: center;
+  margin-top: 12px;
   margin-bottom: 16px;
-}
-
-.filterButton {
-  padding: 10px;
-  border: 1px solid #343b4d;
-  border-radius: 10px;
-  background: #293041;
-  color: #c4b5fd;
-  cursor: pointer;
-}
-
-.filterButton:hover {
-  background: #343b4d;
 }
 
 .list {

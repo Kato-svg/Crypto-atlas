@@ -1,7 +1,9 @@
 import { Link, useSearchParams } from "react-router-dom";
 
 import type { Coin } from "../../entities/coin";
+import { FilterTabs } from "../../features/filter-coins";
 import { SearchCoinsInput } from "../../features/search-coins";
+import { SortSelect } from "../../features/sort-coins";
 import { EmptyState } from "../../shared/ui/empty-state";
 import { formatCurrency, formatPercent } from "../../shared/lib/formatters";
 import type { Currency } from "../../shared/types/currency";
@@ -36,22 +38,17 @@ export function CoinsList({
 
       <SearchCoinsInput value={search} onChange={onSearchChange} />
 
-      <div className={styles.filters}>
-        <button className={styles.filterButton} type="button">
-          All
-        </button>
-        <button className={styles.filterButton} type="button">
-          Gainers
-        </button>
-        <button className={styles.filterButton} type="button">
-          Losers
-        </button>
+      <div className={styles.controls}>
+        <FilterTabs />
+        <SortSelect />
       </div>
 
       {coins.length === 0 ? (
         <EmptyState
           title="No coins found"
-          description={`No results for "${search}"`}
+          description={
+            search ? `No results for "${search}"` : "No coins in this category"
+          }
         />
       ) : (
         <ul className={styles.list}>

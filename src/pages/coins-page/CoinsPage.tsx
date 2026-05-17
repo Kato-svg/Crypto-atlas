@@ -2,10 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import { getCoinsMarkets } from "../../entities/coin";
-import {
-  filterCoins,
-  useDebouncedValue,
-} from "../../features/search-coins";
+import { applyFilterMode } from "../../features/filter-coins";
+import { filterCoins, useDebouncedValue } from "../../features/search-coins";
+import { sortCoins } from "../../features/sort-coins";
 
 import { EmptyState } from "../../shared/ui/empty-state";
 import { ErrorMessage } from "../../shared/ui/error-message";
@@ -17,7 +16,7 @@ const COINS_LIMIT = 50;
 
 function CoinsPage() {
   const { id } = useParams<{ id: string }>();
-  const { currency, search, setSearch } = useMarketParams();
+  const { currency, search, setSearch, sortBy, filterMode } = useMarketParams();
 
   const debouncedSearch = useDebouncedValue(search, 300);
 
@@ -72,7 +71,9 @@ function CoinsPage() {
     );
   }
 
-  const visibleCoins = filterCoins(coins, debouncedSearch);
+  const filtered = applyFilterMode(coins, filterMode);
+  const sorted = filterMode === "all" ? sortCoins(filtered, sortBy) : filtered;
+  const visibleCoins = filterCoins(sorted, debouncedSearch);
 
   const defaultCoin = visibleCoins[0] ?? coins[0];
   const selectedCoin = id ? coins.find((coin) => coin.id === id) : defaultCoin;
@@ -89,9 +90,7 @@ function CoinsPage() {
           onSearchChange={setSearch}
         />
       }
-      right={
-        <CoinDetailsPanel coin={selectedCoin} currency={currency} />
-      }
+      right={<CoinDetailsPanel coin={selectedCoin} currency={currency} />}
     />
   );
 }

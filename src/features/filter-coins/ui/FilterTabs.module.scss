@@ -1,0 +1,43 @@
+.tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 6px 10px;
+
+  background: #2a3040;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: #323a50;
+    color: #e2e8f0;
+  }
+}
+
+.active[data-mode="all"] {
+  background: #1e2a3a;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+.active[data-mode="gainers"] {
+  background: #1a2e1a;
+  border-color: #16a34a;
+  color: #4ade80;
+}
+
+.active[data-mode="losers"] {
+  background: #2e1a1a;
+  border-color: #dc2626;
+  color: #f87171;
+}

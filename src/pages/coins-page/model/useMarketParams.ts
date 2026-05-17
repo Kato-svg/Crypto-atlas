@@ -1,9 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 
 import type { Currency } from "../../../shared/types/currency";
-
-export type SortField = "market_cap" | "price" | "change24h" | "name";
-export type FilterMode = "all" | "gainers" | "losers";
+import type { FilterMode, SortField } from "../../../shared/types/market";
 
 type MarketParams = {
   search: string;
