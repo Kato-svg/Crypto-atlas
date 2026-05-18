@@ -68,18 +68,27 @@
   font-size: 13px;
 }
 
-.chartPlaceholder {
+.chartArea {
+  margin-bottom: 20px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #252b38 0%, #1b202b 100%);
+  padding: 12px 4px 4px;
+  overflow: hidden;
+}
+
+.chartLoading {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 360px;
+  min-height: 304px;
   margin-bottom: 20px;
 
   border: 1px dashed #4b5563;
   border-radius: 18px;
   background: linear-gradient(180deg, #252b38 0%, #1b202b 100%);
   color: #9ca3af;
+  font-size: 14px;
 }
 
 .periods {
@@ -98,6 +107,12 @@
 
 .periodButton:hover {
   background: #343b4d;
+}
+
+.periodButtonActive {
+  background: #3d3559;
+  border-color: #c4b5fd;
+  color: #fff;
 }
 
 .emptyState {
@@ -124,7 +139,7 @@
     grid-template-columns: 1fr;
   }
 
-  .chartPlaceholder {
+  .chartLoading {
     min-height: 240px;
   }
 }

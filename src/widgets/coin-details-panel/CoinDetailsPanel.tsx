@@ -1,11 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+
 import type { Coin } from "../../entities/coin";
+import { getCoinMarketChart } from "../../entities/coin";
 import {
   formatCompactCurrency,
   formatCurrency,
   formatPercent,
 } from "../../shared/lib/formatters";
 import type { Currency } from "../../shared/types/currency";
+import { CoinPriceChart } from "./CoinPriceChart";
 import styles from "./CoinDetailsPanel.module.scss";
+
+type Period = 1 | 7 | 30;
+
+const PERIODS: { value: Period; label: string }[] = [
+  { value: 1, label: "24h" },
+  { value: 7, label: "7d" },
+  { value: 30, label: "30d" },
+];
 
 type CoinDetailsPanelProps = {
   coin: Coin | undefined;
@@ -13,6 +26,14 @@ type CoinDetailsPanelProps = {
 };
 
 export function CoinDetailsPanel({ coin, currency }: CoinDetailsPanelProps) {
+  const [days, setDays] = useState<Period>(1);
+
+  const chartQuery = useQuery({
+    queryKey: ["coin-chart", coin?.id, currency, days],
+    queryFn: () => getCoinMarketChart(coin!.id, currency, days),
+    enabled: !!coin?.id,
+  });
+
   if (!coin) {
     return (
       <section className={styles.panel}>
@@ -62,18 +83,29 @@ export function CoinDetailsPanel({ coin, currency }: CoinDetailsPanelProps) {
         </div>
       </div>
 
-      <div className={styles.chartPlaceholder}>Price chart placeholder</div>
+      {chartQuery.isPending && (
+        <div className={styles.chartLoading}>Loading chart...</div>
+      )}
+      {chartQuery.isError && (
+        <div className={styles.chartLoading}>Failed to load chart</div>
+      )}
+      {chartQuery.data && (
+        <div className={styles.chartArea}>
+          <CoinPriceChart data={chartQuery.data} currency={currency} days={days} />
+        </div>
+      )}
 
       <div className={styles.periods}>
-        <button className={styles.periodButton} type="button">
-          24h
-        </button>
-        <button className={styles.periodButton} type="button">
-          7d
-        </button>
-        <button className={styles.periodButton} type="button">
-          30d
-        </button>
+        {PERIODS.map(({ value, label }) => (
+          <button
+            key={value}
+            className={`${styles.periodButton} ${days === value ? styles.periodButtonActive : ""}`}
+            type="button"
+            onClick={() => setDays(value)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </section>
   );
