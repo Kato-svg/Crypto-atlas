@@ -65,11 +65,22 @@ export function CoinsList({
                   }}
                   aria-current={isActive ? "page" : undefined}
                 >
-                  <div>
-                    <p className={styles.coinName}>
-                      #{coin.rank} {coin.name}
-                    </p>
-                    <p className={styles.coinSymbol}>{coin.symbol}</p>
+                  <div className={styles.coinMeta}>
+                    {coin.image && (
+                      <img
+                        src={coin.image}
+                        alt={coin.name}
+                        className={styles.coinIcon}
+                        width={32}
+                        height={32}
+                      />
+                    )}
+                    <div>
+                      <p className={styles.coinName}>
+                        #{coin.rank} {coin.name}
+                      </p>
+                      <p className={styles.coinSymbol}>{coin.symbol}</p>
+                    </div>
                   </div>
 
                   <div className={styles.coinInfo}>

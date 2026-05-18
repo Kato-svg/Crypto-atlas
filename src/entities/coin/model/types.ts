@@ -2,6 +2,7 @@ export type Coin = {
   id: string;
   name: string;
   symbol: string;
+  image: string;
   price: number;
   change24h: number;
   marketCap: number;
@@ -13,7 +14,7 @@ export type CoinMarketApiResponse = {
   id: string;
   symbol: string;
   name: string;
-  image: string;
+  image: string | null;
   current_price: number | null;
   price_change_percentage_24h: number | null;
   market_cap: number | null;

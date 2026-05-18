@@ -47,11 +47,22 @@ export function CoinDetailsPanel({ coin, currency }: CoinDetailsPanelProps) {
   return (
     <section className={styles.panel}>
       <div className={styles.header}>
-        <div>
-          <p className={styles.label}>Selected coin</p>
-          <h2 className={styles.title}>
-            {coin.name} {coin.symbol}
-          </h2>
+        <div className={styles.coinMeta}>
+          {coin.image && (
+            <img
+              src={coin.image}
+              alt={coin.name}
+              className={styles.coinIcon}
+              width={48}
+              height={48}
+            />
+          )}
+          <div>
+            <p className={styles.label}>Selected coin</p>
+            <h2 className={styles.title}>
+              {coin.name} <span className={styles.symbol}>{coin.symbol}</span>
+            </h2>
+          </div>
         </div>
 
         <div className={styles.priceBlock}>

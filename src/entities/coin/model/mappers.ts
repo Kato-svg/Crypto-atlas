@@ -7,6 +7,7 @@ export function mapCoinMarketApiResponseToCoin(
     id: coin.id,
     name: coin.name,
     symbol: coin.symbol.toUpperCase(),
+    image: coin.image ?? "",
     price: coin.current_price ?? 0,
     change24h: coin.price_change_percentage_24h ?? 0,
     marketCap: coin.market_cap ?? 0,

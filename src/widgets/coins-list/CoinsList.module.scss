@@ -46,6 +46,18 @@
   margin: 0;
 }
 
+.coinMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.coinIcon {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
 .coinButton {
   display: flex;
   align-items: center;
